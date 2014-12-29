@@ -1,0 +1,1682 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tethys</name>
+    </assembly>
+    <members>
+        <member name="T:Tethys.BitString">
+            <summary>
+            This class represents a bit string.
+            </summary>
+        </member>
+        <member name="F:Tethys.BitString._width">
+            <summary>
+            Width of the bit string.
+            </summary>
+        </member>
+        <member name="F:Tethys.BitString._value">
+            <summary>
+            Current value of the bit string.
+            </summary>
+        </member>
+        <member name="M:Tethys.BitString.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.BitString"/> class.
+            Creates a bit string of width 8.
+            </summary>
+        </member>
+        <member name="M:Tethys.BitString.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.BitString"/> class.
+            </summary>
+            <param name="width">The width.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">width;range for width = 1..32</exception>
+        </member>
+        <member name="M:Tethys.BitString.#ctor(Tethys.BitString)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.BitString"/> class.
+            </summary>
+            <param name="source">The source.</param>
+        </member>
+        <member name="M:Tethys.BitString.Equals(System.Object)">
+            <summary>
+            Tests whether the specified object is a BitString object
+            and is equivalent to this BitString object.
+            </summary>
+            <param name="obj">operand to be compared to the object</param>
+            <returns>The function returns true if the two operands are identical.</returns>
+        </member>
+        <member name="M:Tethys.BitString.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <remarks>
+            This is only a DUMMY - we don't need this method here.
+            </remarks>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="M:Tethys.BitString.ToString">
+            <summary>
+            Returns a string representing this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Tethys.BitString.And(System.Int32)">
+            <summary>
+            Performs a bit-wise AND operation.
+            </summary>
+            <param name="operand">Operand for AND operation</param>
+        </member>
+        <member name="M:Tethys.BitString.Or(System.Int32)">
+            <summary>
+            Performs a bit-wise OR operation.
+            </summary>
+            <param name="operand">Operand for OR operation</param>
+        </member>
+        <member name="M:Tethys.BitString.Clear(System.Int32)">
+            <summary>
+            Clears the specified bits from the value.
+            </summary>
+            <param name="bitsToClear">Bits to be cleared.</param>
+        </member>
+        <member name="P:Tethys.BitString.Width">
+            <summary>
+            Gets the with of the bit string.
+            </summary>
+        </member>
+        <member name="P:Tethys.BitString.Value">
+            <summary>
+            Gets or sets the value of the bit string.
+            </summary>
+        </member>
+        <member name="T:Tethys.Conversion.ByteArrayConversion">
+            <summary>
+            Implementation of some conversion methods.
+            </summary>
+        </member>
+        <member name="M:Tethys.Conversion.ByteArrayConversion.StringToByteArray(System.String)">
+            <summary>
+            Translates a string of characters
+            to its binary representation.
+            </summary>
+            <example>
+            <code>
+            "ABC" => 0x41, 0x42, 0x43.
+            </code>
+            </example>
+            <param name="input">The text input.</param>
+            <returns>A byte array.</returns>
+        </member>
+        <member name="M:Tethys.Conversion.ByteArrayConversion.HexStringToByteArray(System.String)">
+            <summary>
+            Translates a string of two digit hex numbers
+            to its binary representation.
+            </summary>
+            <example>
+            <code>
+            "000102FF" =&gt; 0x00, 0x01, 0x02, 0xff.
+            </code>
+            </example>
+            <param name="input">The input.</param>
+            <returns>
+            A byte array.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            input;input must have an even length,</exception>
+            <exception cref="T:System.ArgumentException">
+            Invalid input value;input.</exception>
+        </member>
+        <member name="M:Tethys.Conversion.ByteArrayConversion.ByteArrayToHexString(System.Byte[])">
+            <summary>
+            Translates a array of bytes to a hexadecimal ASCII representation.
+            </summary>
+            <example>
+            <code>
+            0x00, 0x01, 0x05, 0xab, 0xff => "000105ABFF".
+            </code>
+            </example>
+            <param name="data">The data.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Tethys.Conversion.ByteArrayConversion.ByteArrayToHexString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Translates a array of bytes to a hexadecimal ASCII representation.
+            </summary>
+            <example>
+            <code>
+            0x00, 0x01, 0x05, 0xab, 0xff => "000105ABFF".
+            </code>
+            </example>
+            <param name="data">The data.</param>
+            <param name="indexStart">The index start.</param>
+            <param name="len">The len.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:Tethys.IO.RingBuffer">
+            <summary>
+            This class implements a circular buffer, i.e new incoming data that does not
+            fit in the buffer overwrites the data at the beginning of the buffer. This is
+            the official definition of a ring buffer. The ring buffer implemented here was
+            designed to get primarily a text ring buffer, that concatenates incoming text
+            to the text already in the buffer. To achieve this the current contents of the
+            buffer is moved within the buffer so that the first characters are cut off and the
+            new text fits completely at the end of the buffer. The advantage of this
+            architecture is a very simple and fast GetData() function.
+            </summary>
+        </member>
+        <member name="F:Tethys.IO.RingBuffer.DefaultSize">
+            <summary>
+            Default size for the ring buffer.
+            </summary>
+        </member>
+        <member name="F:Tethys.IO.RingBuffer._size">
+            <summary>
+            Internal property: current size of the ring buffer in characters.
+            </summary>
+        </member>
+        <member name="F:Tethys.IO.RingBuffer._position">
+            <summary>
+            Internal property: current (insert) position within the ring buffer.
+            </summary>
+        </member>
+        <member name="F:Tethys.IO.RingBuffer._buffer">
+            <summary>
+            Internal property: the character ring buffer.
+            </summary>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.IO.RingBuffer"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.IO.RingBuffer"/> class.
+            </summary>
+            <param name="size">Size in characters of the ring buffer</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">size;size must be &gt; 0</exception>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.Init">
+            <summary>
+            Initializes a new buffer of the given size.
+            </summary>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.Reset">
+            <summary>
+            This function resets the ring buffer, i.e. the current insert
+            position is set to the beginning of the buffer.
+            </summary>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.AddData(System.String)">
+            <summary>
+            This function adds string data to the ring buffer.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.AddData(System.Char[],System.Int32)">
+            <summary>
+            This function adds character data to the ring buffer.
+            </summary>
+            <param name="data">array of characters</param>
+            <param name="count">umber of characters to be added</param>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.GetData">
+            <summary>
+            This function returns the (complete) current contents of the ring buffer.
+            </summary>
+            <returns>
+            String containing the complete current contents of the ring buffer.
+            </returns>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.GetData(System.Int32)">
+            <summary>
+            This function returns the current contents of the ring buffer.
+            </summary>
+            <param name="count">maximum number of characters to return.</param>
+            <returns>
+            String containing up to count characters of the  contents of the ring buffer.
+            </returns>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.Consume(System.Int32)">
+            <summary>
+            This function consumes the specified amount of data characters,
+            i.e. the internal start of data pointer is increased by the given amount.
+            </summary>
+            <param name="amount">number of characters to consume</param>
+        </member>
+        <member name="M:Tethys.IO.RingBuffer.GetNextLine">
+            <summary>
+            This function returns the next full line from the ring buffer.
+            If no line end delimiter ('\n') is found an empty string will be returned.
+            </summary>
+            <remarks>
+            Expected is CR/LF = "\r\n" = 0x0D 0x0A.<br/>
+            Also allowed is only LF = '\n' = 0x0A.<br/>
+            <b>NOT</b> allowed is only CR = '\r' = 0x0D !!!!<br/>
+            </remarks>
+            <returns>The next line.</returns>
+        </member>
+        <member name="P:Tethys.IO.RingBuffer.Size">
+            <summary>
+            Gets or sets the current size of the ring buffer in characters.
+            </summary>
+        </member>
+        <member name="P:Tethys.IO.RingBuffer.Position">
+            <summary>
+            Gets the current (insert) position within the ring buffer.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.ReleaseMode">
+            <summary>
+            Enumeration of release modes.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.ReleaseMode.Test">
+            <summary>
+            Internal test version - only for developer
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.ReleaseMode.Work">
+            <summary>
+            Version for internal test.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.ReleaseMode.Final">
+            <summary>
+            Final version for customer.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.AssemblyCommentAttribute">
+            <summary>
+            User defined attribute for software release comment.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.AssemblyCommentAttribute._comment">
+            <summary>
+            The comment.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.AssemblyCommentAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Reflection.AssemblyCommentAttribute"/> class.
+            </summary>
+            <param name="comment">The comment.</param>
+        </member>
+        <member name="P:Tethys.Reflection.AssemblyCommentAttribute.Comment">
+            <summary>
+            Gets the software release comment.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.AssemblyDayAttribute">
+            <summary>
+            User defined attribute for software release day.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.AssemblyDayAttribute._day">
+            <summary>
+            The day.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.AssemblyDayAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Reflection.AssemblyDayAttribute"/> class.
+            </summary>
+            <param name="day">The day.</param>
+        </member>
+        <member name="P:Tethys.Reflection.AssemblyDayAttribute.Day">
+            <summary>
+            Gets the software release day.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.AssemblyFirstYearAttribute">
+            <summary>
+            User defined attribute for software release first year.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.AssemblyFirstYearAttribute._firstyear">
+            <summary>
+            The first year.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.AssemblyFirstYearAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Reflection.AssemblyFirstYearAttribute"/> class.
+            </summary>
+            <param name="firstyear">The first year.</param>
+        </member>
+        <member name="P:Tethys.Reflection.AssemblyFirstYearAttribute.FirstYear">
+            <summary>
+            Gets the first software release year.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.AssemblyMonthAttribute">
+            <summary>
+            User defined attribute for software release month.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.AssemblyMonthAttribute._month">
+            <summary>
+            The month.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.AssemblyMonthAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Reflection.AssemblyMonthAttribute"/> class.
+            </summary>
+            <param name="month">The month.</param>
+        </member>
+        <member name="P:Tethys.Reflection.AssemblyMonthAttribute.Month">
+            <summary>
+            Gets the software release month.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.AssemblyReleaseModeAttribute">
+            <summary>
+            User defined attribute for software release mode.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.AssemblyReleaseModeAttribute._releasemode">
+            <summary>
+            The release mode.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.AssemblyReleaseModeAttribute.#ctor(Tethys.Reflection.ReleaseMode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Reflection.AssemblyReleaseModeAttribute"/> class.
+            </summary>
+            <param name="releasemode">The release mode.</param>
+        </member>
+        <member name="P:Tethys.Reflection.AssemblyReleaseModeAttribute.ReleaseMode">
+            <summary>
+            Gets the software release mode.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.AssemblyYearAttribute">
+            <summary>
+            User defined attribute for software release year.
+            </summary>
+        </member>
+        <member name="F:Tethys.Reflection.AssemblyYearAttribute._year">
+            <summary>
+            The year.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.AssemblyYearAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Reflection.AssemblyYearAttribute"/> class.
+            </summary>
+            <param name="year">The year.</param>
+        </member>
+        <member name="P:Tethys.Reflection.AssemblyYearAttribute.Year">
+            <summary>
+            Gets the software release year.
+            </summary>
+        </member>
+        <member name="T:Tethys.Reflection.VersionInfo">
+            <summary>
+            The VersionInfo class contains static methods to generate
+            software release version strings.
+            </summary>
+        </member>
+        <member name="M:Tethys.Reflection.VersionInfo.GetMonth(System.Int32)">
+            <summary>
+            Returns a month string for the given month and language.
+            </summary>
+            <param name="month">The month.</param>
+            <returns>The month in the current UI language.</returns>
+        </member>
+        <member name="M:Tethys.Reflection.VersionInfo.GetDateBuild(System.Reflection.Assembly,System.Globalization.CultureInfo)">
+            <summary>
+            This function returns the date of the build of the application.<br />
+            Format = DD.MMM.YY (de) or DD-MMM-YY (us)<br />
+            Sample: "24.Jan.00"
+            </summary>
+            <param name="assemblyTarget">The assembly target.</param>
+            <param name="culture">The culture.</param>
+            <returns>The build date.</returns>
+        </member>
+        <member name="M:Tethys.Reflection.VersionInfo.GetDateBuild(System.Reflection.Assembly)">
+            <summary>
+            This function returns the date of the built of the application.<br />
+            The format is the one that is valid for the current culture.<br />
+            Sample: "24.Jan.00"
+            </summary>
+            <param name="assemblyTarget">The assembly target.</param>
+            <returns>
+            The build date.
+            </returns>
+        </member>
+        <member name="M:Tethys.Reflection.VersionInfo.GetLevel(System.Reflection.Assembly,System.Version)">
+            <summary>
+            Returns the level text for the specified assembly.<br />
+            Sample: "1.0.4Beta (Level 1)"
+            </summary>
+            <param name="assemblyTarget">The assembly target.</param>
+            <param name="version">The version.</param>
+            <returns>The level.</returns>
+        </member>
+        <member name="M:Tethys.Reflection.VersionInfo.GetVersion(System.Reflection.Assembly,System.Version,System.Globalization.CultureInfo)">
+            <summary>
+            Returns the version text for the specified assembly and language.<br/>
+            Sample:
+            <example><c>"Version 1.0.4Beta (Level 1) vom 24.Jan.00"</c></example>
+            </summary>
+            <param name="assemblyTarget">The assembly target.</param>
+            <param name="version">The version.</param>
+            <param name="uiCulture">The UI culture.</param>
+            <returns>
+            The version string.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            assemblyTarget
+            or
+            culture
+            </exception>
+        </member>
+        <member name="T:Tethys.Text.DiffEventArgs">
+            <summary>
+            LCS difference algorithm event arguments.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.DiffEventArgs.#ctor(Tethys.Text.DiffType,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.DiffEventArgs"/>
+            class.
+            </summary>
+            <param name="diffType">Type of the diff.</param>
+            <param name="lineValue">The line value.</param>
+            <param name="index">Line index.</param>
+        </member>
+        <member name="P:Tethys.Text.DiffEventArgs.DiffType">
+            <summary>
+            Gets or sets the difference type (added, subtracted, identical).
+            </summary>
+        </member>
+        <member name="P:Tethys.Text.DiffEventArgs.LineIndex">
+            <summary>
+            Gets or sets the difference item index.
+            </summary>
+        </member>
+        <member name="P:Tethys.Text.DiffEventArgs.LineValue">
+            <summary>
+            Gets or sets the difference item value.
+            </summary>
+        </member>
+        <member name="T:Tethys.Text.DiffType">
+            <summary>
+            Possible difference types.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.DiffType.None">
+            <summary>
+            Both items are identical.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.DiffType.Add">
+            <summary>
+            An item has been added.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.DiffType.Subtract">
+            <summary>
+            An item has been removed.
+            </summary>
+        </member>
+        <member name="T:Tethys.Text.NumberFormat">
+            <summary>
+            The class Number format implements function to convert number to different
+            text representation. These function are easier to use than the default .Net
+            functions.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.NumberFormat.ToHex(System.Int32)">
+            <summary>
+            Translates an integer value to a hexadecimal string.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:Tethys.Text.NumberFormat.ToHex(System.Int32,System.Int32)">
+            <summary>
+            Translates an integer value to a hexadecimal string.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="leadingZeros">The leading zeros.</param>
+            <returns>
+            A string.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.NumberFormat.ToBinary(System.Byte)">
+            <summary>
+            Translates an integer value to a binary string.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            A string.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.NumberFormat.ToBinary(System.Int16)">
+            <summary>
+            Translates an integer value to a binary string.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            A string.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.NumberFormat.ToBinary(System.Int32)">
+            <summary>
+            Translates an integer value to a binary string.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:Tethys.Text.ParseOptions">
+            <summary>
+            Parsing operation flags for the class TextParse.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.None">
+            <summary>
+            No flags set.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.SkipSpace">
+            <summary>
+            Accepts whitespace before and after the parsing location.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Quoted">
+            <summary>
+            String must be specified in quoted strings.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.ToSpace">
+            <summary>
+            Limit end of the token to the next space area.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.ToLocation">
+            <summary>
+            Limit end of the token to the current location.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.SetEnd">
+            <summary>
+            Sets also the end of the token in dependence
+            of the other token-end-setting flags.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Signed">
+            <summary>
+            Allow '-'.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Hex">
+            <summary>
+            Allow hex digits.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Digits">
+            <summary>
+            GetFixName: Accept also digits 0..9 in a name.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.FullName">
+            <summary>
+            GetFixName: Accept only full names (no proper abbreviations).
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.ExtraChar">
+            <summary>
+            GetFixName: Allow also '_' and '-' within a name.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Overflow">
+            <summary>
+            Accept numerical overflows and return an <c>INT32/uint</c> modulo value.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.HexOnly">
+            <summary>
+            Only hexadecimal values are permitted.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Comma">
+            <summary>
+            Besides '.' also ',' is allowed as decimal separator.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParseOptions.Umlaute">
+            <summary>
+            Allow also German umlaute.
+            </summary>
+        </member>
+        <member name="T:Tethys.Text.ParsingError">
+            <summary>
+            Enumeration of parsing error codes.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.NoError">
+            <summary>
+            No error.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.EndExpected">
+            <summary>
+            Line end expected.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.StringExpected">
+            <summary>
+            String expected.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.SpecAmbiguous">
+            <summary>
+            Specification is ambiguous.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.NumberExpected">
+            <summary>
+            Number expected.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.SpecNotFound">
+            <summary>
+            Specification not found.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.DecimalNumberExpected">
+            <summary>
+            Decimal number expected.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.FloatNumberExpected">
+            <summary>
+            Number expected.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingError.StringEndExpected">
+            <summary>
+            End of string expected.
+            </summary>
+        </member>
+        <member name="T:Tethys.Text.ParsingException">
+            <summary>
+            Implements the ParsingException used by the TextParse class.
+            </summary> 
+        </member>
+        <member name="F:Tethys.Text.ParsingException._error">
+            <summary>
+            Parsing error code.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.ParsingException._lastToken">
+            <summary>
+            Last token that has been successfully parsed.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.ParsingException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.ParsingException"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.ParsingException.#ctor(Tethys.Text.ParsingError)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.ParsingException"/> class.
+            </summary>
+            <param name="error">The error.</param>
+        </member>
+        <member name="M:Tethys.Text.ParsingException.#ctor(Tethys.Text.ParsingError,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.ParsingException"/> class.
+            </summary>
+            <param name="error">The error.</param>
+            <param name="lastToken">The last token.</param>
+        </member>
+        <member name="M:Tethys.Text.ParsingException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.ParsingException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Tethys.Text.ParsingException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.ParsingException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="P:Tethys.Text.ParsingException.Error">
+            <summary>
+            Gets the parsing error.
+            </summary>
+        </member>
+        <member name="P:Tethys.Text.ParsingException.LastToken">
+            <summary>
+            Gets the last token (= error location).
+            </summary>
+        </member>
+        <member name="T:Tethys.Text.SimpleDiff">
+            <summary>
+            SimpleDiff implements as simple LCS algorithm.
+            LCS = Longest common subsequence, see this
+            <a href="http://en.wikipedia.org/wiki/Longest_common_subsequence_problem#Computing_the_length_of_the_LCS">link</a>.
+            for details.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.SimpleDiff._left">
+            <summary>
+            Left side.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.SimpleDiff._right">
+            <summary>
+            Right side.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.SimpleDiff._matrix">
+            <summary>
+            The matrix.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.SimpleDiff._matrixCreated">
+            <summary>
+            Matrix creation flag.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.SimpleDiff._preSkip">
+            <summary>
+            Pre skip value.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.SimpleDiff._postSkip">
+            <summary>
+            Post skip value.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.#ctor(System.String[],System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.SimpleDiff"/> class.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.RunDiff">
+            <summary>
+            This is the sole public method and it initializes
+            the LCS matrix the first time it's called, and 
+            proceeds to fire a series of LineUpdate events
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.CalculatePostSkip">
+            <summary>
+            This method is an optimization that
+            skips matching elements at the end of the 
+            two arrays being compared.
+            Care's taken so that this will never
+            overlap with the pre-skip.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.CalculatePreSkip">
+            <summary>
+            This method is an optimization that
+            skips matching elements at the start of
+            the arrays being compared.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.ShowDiff(System.Int32,System.Int32)">
+            <summary>
+            This traverses the elements using the LCS matrix
+            and fires appropriate events for added, subtracted,
+            and unchanged lines.
+            It's recursively called till we run out of items.
+            </summary>
+            <param name="leftIndex">Index of the left.</param>
+            <param name="rightIndex">Index of the right.</param>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.CreateLCSMatrix">
+            <summary>
+            This is the core method in the entire class,
+            and uses the standard LCS calculation algorithm.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.FireLineUpdate(Tethys.Text.DiffType,System.String,System.Int32)">
+            <summary>
+            Fires the line update.
+            </summary>
+            <param name="diffType">Type of the diff.</param>
+            <param name="lineValue">The line value.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Tethys.Text.SimpleDiff.StringCompare(System.String,System.String)">
+            <summary>
+            This comparison is specifically
+            for strings, and was nearly thrice as
+            fast as the default comparison operation.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>A value indicating whether both string are the same.</returns>
+        </member>
+        <member name="E:Tethys.Text.SimpleDiff.LineUpdate">
+            <summary>
+            Line update event.
+            </summary>
+        </member>
+        <member name="T:Tethys.Text.TextParse">
+            <summary>
+            The TextParse class implements a large number of text parsing
+            methods.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.TextParse.DefaultWhiteSpaceList">
+            <summary>
+            List of default whitespace characters.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.TextParse._text">
+            <summary>
+            The text to be parsed.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.TextParse._location">
+            <summary>
+            Current location.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.TextParse._whiteSpaceList">
+            <summary>
+            Current white space list.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.TextParse._tokenStart">
+            <summary>
+            Start token.
+            </summary>
+        </member>
+        <member name="F:Tethys.Text.TextParse._tokenEnd">
+            <summary>
+            End token.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.TextParse"/>
+            class.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Text.TextParse"/>
+            class.
+            </summary>
+            <param name="text">text to be parsed</param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.Init(System.String)">
+            <summary>
+            Initializes the parsing engine with the specified text.
+            </summary>
+            <param name="text">text to be parsed</param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SetLocation(System.Int32)">
+            <summary>
+            Sets the parsing location to the specified text position.
+            </summary>
+            <param name="location">new parsing location</param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.MoveLocation(System.Int32)">
+            <summary>
+            Moves the parsing location into front or backwards by
+            a delta value.
+            </summary>
+            <param name="delta">positive or negative delta</param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetLastToken(Tethys.Text.ParseOptions)">
+            <summary>
+            Returns the last set token as string. Optionally, the end of
+            the token may be set; otherwise the end location must be determined before.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetLastToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>ToSpace = limit end of the token to the next space area.</description>
+            </item>
+            <item>
+            <description>ToLocation = limit end of the token to the current location.
+            If both options are set, the first end location is used.</description>
+            </item>
+            <item>
+            <description>ToEnd = activates the determining of the token-end which must 
+            be set when no other flags are set.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The last token.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetLastToken">
+            <summary>
+            Returns the last set token as string. 
+            </summary>
+            <returns>The last token.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SetLastToken">
+            <summary>
+            Sets the current parsing location at the beginning of the last token.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SetLastToken(System.Int32,Tethys.Text.ParseOptions)">
+            <summary>
+            Sets the specified text position as begin of the last token location.
+            </summary>
+            <param name="start">the new start position of the last token.</param>
+            <param name="parseflags">
+            Parsing flags. Valid flags for SetLastToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>ToSpace = limit end of the token to the next space area.</description>
+            </item>
+            <item>
+            <description>ToLocation = limit end of the token to the current location.
+            If both options are set, the first end location is used.</description>
+            </item>
+            <item>
+            <description>ToEnd = activates the determining of the token-end which must 
+            be set when no other flags are set.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SetLastToken(System.Int32)">
+            <summary>
+            Sets the specified text position as begin of the last token location.
+            </summary>
+            <param name="start">The new start position of the last token.</param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SetLastToken(Tethys.Text.ParseOptions)">
+            <summary>
+            Determines the end of the last token relative to the begin of
+            the set token start location.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for SetLastToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>ToSpace = limit end of the token to the next space area.</description>
+            </item>
+            <item>
+            <description>ToLocation = limit end of the token to the current location.
+            If both options are set, the first end location is used.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetChar">
+            <summary>
+            Returns the character at the current position, possibly 
+            after skipping space characters.
+            </summary>
+            <returns>Character at the current position</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetChar(Tethys.Text.ParseOptions)">
+            <summary>
+            Returns the character at the current position, possibly 
+            after skipping space characters.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetChar are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location</description>
+            </item>
+            </list>
+            </param>
+            <returns>Character at the current position</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsNumber(Tethys.Text.ParseOptions)">
+            <summary>
+            Checks whether the character at the current parsing location
+            belongs to a number.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for IsNumber are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =skip space characters.</description>
+            </item>
+            <item>
+            <description>Signed = allow '-'.</description>
+            </item>
+            <item>
+            <description>Signed = allow hex digits.</description>
+            </item>
+            </list>
+            </param>
+            <returns>Returns true if the character at the current parsing location
+            belongs to a number.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsNumber">
+            <summary>
+            Checks whether the character at the current parsing location
+            belongs to a number.
+            </summary>
+            <returns>Returns true if the character at the current parsing location
+            belongs to a number.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetNextChar(Tethys.Text.ParseOptions)">
+            <summary>
+            Sets the parsing location to the next character, optionally
+            spaces are skipped, and returns the character at this location.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetNextChar are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace = accepts whitespace before and after the parsing
+            location</description>
+            </item>
+            </list>
+            </param>
+            <returns>Returns the character read.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetNextChar">
+            <summary>
+            Sets the parsing location to the next character, optionally
+            spaces are skipped, and returns the character at this location.
+            </summary>
+            <returns>Returns the character read.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.LookNextChar(Tethys.Text.ParseOptions)">
+            <summary>
+            Reads the character from the subsequent parsing location,
+            optionally spaces are skipped, and returns this character without 
+            changing the current parsing location.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for LookNextChar are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>Returns the character read.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.LookNextChar">
+            <summary>
+            Reads the character from the subsequent parsing location,
+            optionally spaces are skipped, and returns this character without 
+            changing the current parsing location.
+            </summary>
+            <returns>Returns the character read.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsEndOfLine(Tethys.Text.ParseOptions)">
+            <summary>
+            Checks if the end of line (= end of string, 0-terminator) is
+            reached. Space characters from the current location to the end 
+            location are skipped if the specific option is set (default).
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for IsEndOfLine are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>
+            Returns TRUE if the end of line is reached and FALSE if not.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsEndOfLine">
+            <summary>
+            Checks if the end of line (= end of string, 0-terminator) is
+            reached. Space characters from the current location to the end 
+            location are skipped if the specific option is set (default).
+            </summary>
+            <returns>
+            Returns TRUE if the end of line is reached and FALSE if not.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.CheckEndOfLine(Tethys.Text.ParseOptions)">
+            <summary>
+            This function checks if - except trailing spaces - the parsing string
+            is terminated. If so the function returns. Otherwise an EndExpected
+            exception is thrown with the first next token as parameter.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for CheckEndOfLine are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.CheckEndOfLine">
+            <summary>
+            This function checks if - except trailing spaces - the parsing string
+            is terminated. If so the function returns. Otherwise an EndExpected
+            exception is thrown with the first next token as parameter.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsFixChar(System.Char,Tethys.Text.ParseOptions)">
+            <summary>
+             Tests if the next character (after skipping space characters)
+             is the specified character. The character is consumed.
+            </summary>
+            <param name="ch">The character which is must match.</param>
+            <param name="parseflags">
+            Parsing flags. Valid flags for IsFixChar are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>If the character at the parsing location matches the
+            specification, TRUE is returned and FALSE if not.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsFixChar(System.Char)">
+            <summary>
+             Tests if the next character (after skipping space characters)
+             is the specified character. The character is consumed.
+            </summary>
+            <param name="ch">the character which is must match.</param>
+            <returns>If the character at the parsing location matches the
+            specification, TRUE is returned and FALSE if not.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetFixChar(System.String,Tethys.Text.ParseOptions)">
+            <summary>
+            Tests if the next character (after skipping space characters)
+            is one of the characters in the specified character list. The 
+            character is consumed. The character comparison is case sensitive!
+            </summary>
+            <param name="charlist">List of valid characters. The first
+            character has the return index 1, the next 2 etc.</param>
+            <param name="parseflags">
+            Parsing flags. Valid flags for CheckEndOfLine are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>If the character at the parsing location matches the string,
+            its index (relative to 1) is returned. If the character doesn't match, 
+            0 is returned.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetFixChar(System.String)">
+            <summary>
+            Tests if the next character (after skipping space characters)
+            is one of the characters in the specified character list. The 
+            character is consumed.
+            </summary>
+            <param name="charlist">List of valid characters. The first
+            character has the return index 1, the next 2 etc.</param>
+            <returns>If the character at the parsing location matches the string,
+            its index (relative to 1) is returned. If the character doesn't match, 
+            0 is returned.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.CheckFixChar(System.Char,Tethys.Text.ParseOptions)">
+            <summary>
+            Tests if the next character (after skipping space characters)
+            is one of the characters in the specified character list. The 
+            character is skipped.
+            </summary>
+            <param name="ch">Contains the character which is must match.</param>
+            <param name="parseflags">
+            Parsing flags. Valid flags for CheckFixChar are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.CheckFixChar(System.String,Tethys.Text.ParseOptions)">
+            <summary>
+            Tests if the next character (after skipping space characters)
+            is one of the characters in the specified character list. The 
+            character is skipped.
+            </summary>
+            <param name="charlist">List of valid characters. The first
+            character has the return index 1, the next 2 etc.</param>
+            <param name="parseflags">
+            Parsing flags. Valid flags for CheckFixChar are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace =accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>If the character at the parsing location matches the string, 
+            its index (relative to 1) is returned. If the character doesn't match,
+            an exception is thrown.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.CheckFixChar(System.String)">
+            <summary>
+            Tests if the next character (after skipping space characters)
+            is one of the characters in the specified character list. The 
+            character is skipped.
+            </summary>
+            <param name="charlist">List of valid characters. The first
+            character has the return index 1, the next 2 etc.</param>
+            <returns>If the character at the parsing location matches the string, 
+            its index (relative to 1) is returned. If the character doesn't match,
+            an exception is thrown.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.CheckSpace">
+            <summary>
+            Checks if at the current parsing location one ore more space
+            characters follows and skips it. The end of the parsing line is
+            also accepted. If no space follows, an exception is thrown and
+            the next token is printed.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetFixName(System.String,Tethys.Text.ParseOptions)">
+            <summary>
+            Parses the name at the current parsing location and returns its 
+            position in the specified string. The function doesn't select between
+            uppercase and lowercase characters. Commands may be abbreviated but 
+            must be unambiguous within the specified name list. A command name 
+            may contain all characters in the range A..Z or a..z or 
+            (if Digits is set) also digits in range 0..9.
+            </summary>
+            <param name="namelist">String which contains the permitted names, 
+            separated by the horizontal tabulator character (\t). The names must
+            be specified in lower case.</param>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetFixName are:<br/>
+            <list type="bullet">
+            <item>
+            <description>Digits = Accept also digits 0..9 in a name.</description>
+            </item>
+            <item>
+            <description>FullName = Accept only full names (no proper abbreviations).</description>
+            </item>
+            <item>
+            <description>ExtraChar = Allow also '_' and '-' within a name.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The function returns the relative position of the matched name
+            within the string, started with 1. If no command is specified, 0 is
+            returned. If the command name is not found, -1 is returned.</returns>
+            <remarks>
+            If no name is parsed, the parsing location is not changed. Otherwise (also
+            if the name is ambiguous) the parsing location is set after the parsed
+            command. Trailing and leading spaces are only skipped if the option
+            Space is set.
+            </remarks>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetHexDigit(System.Char)">
+            <summary>
+             Converts the specified hexadecimal character ('0'..'9',
+             'A'..'F', 'a'..'f') into the binary representation (0..15).
+            </summary>
+            <param name="ch">Character to be handled as hex digit</param>
+            <returns>Returns the binary representation of the character if it a
+            hexadecimal character; otherwise -1 is returned.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsHexDigit(System.Char)">
+            <summary>
+            Checks whether the specified character is a hexadecimal digit
+            (0..9, a..f, A..F).
+            </summary>
+            <param name="ch">Character to check</param>
+            <returns>Returns true if the character is a hexadecimal digit;
+            otherwise false.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetUnsignedNumber(Tethys.Text.ParseOptions,System.UInt32)">
+            <summary>
+            Reads an unsigned number in decimal, hexadecimal or optional octal 
+            notation from the parsing location, converts it into its binary
+            representation and returns this value.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetUnsignedNumber are:<br/>
+            <list type="bullet">
+            <item>
+            <description>
+            SkipSpace = Accepts whitespace before and after the parsing location.
+            </description>
+            </item>
+            <item>
+            <description>
+            Hex =  Allow hex digits with leading '0x'.</description>
+            </item>
+            <item>
+            <description>
+            HexOnly =  accept only hex values without leading '0x'</description>
+            </item>
+            </list>
+            </param>
+            <param name="maxValue">
+            Contains the maximum value which is permitted. If the read value is 
+            larger than this value, the OverflowException exception is thrown. 
+            If this value is 0, no maximum value is checked.
+            </param>
+            <returns>Returns the unsigned number read at the current location.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetSignedNumber(Tethys.Text.ParseOptions,System.Int32)">
+            <summary>
+            Reads an signed number in decimal, hexadecimal or optional octal 
+            notation from the parsing location, converts it into its binary
+            representation and returns this value.<br/>
+            This function is an enhanced version of get GetUnsignedNumber().
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetSignedNumber are:<br/>
+            <list type="bullet">
+            <item>
+            <description>
+            SkipSpace = Accepts whitespace before and after the parsing location.
+            </description>
+            </item>
+            <item>
+            <description>
+            Hex =  Allow hex digits with leading '0x'.</description>
+            </item>
+            <item>
+            <description>
+            HexOnly =  accept only hex values without leading '0x'.</description>
+            </item>
+            </list>
+            </param>
+            <param name="maxValue">
+            Contains the maximum value which is permitted. If the read value is 
+            larger than this value, the OverflowException exception is thrown. 
+            If this value is 0, no maximum value is checked.
+            </param>
+            <returns>Returns the signed number read at the current location.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetUnsignedDecimal(Tethys.Text.ParseOptions,System.UInt32)">
+            <summary>
+            Reads an unsigned decimal number at the parsing location, converts 
+            it into its binary representation and returns this value. If the 
+            SkipSpace flag is set, leading or trailing space characters are
+            skipped.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetUnsignedDecimal are:<br/>
+            <list type="bullet">
+            <item>
+            <description>
+            SkipSpace = Accepts whitespace before and after the parsing location.
+            </description>
+            </item>
+            </list>
+            </param>
+            <param name="maxValue">
+            Contains the maximum value which is permitted. If the read value is 
+            larger than this value, the OverflowException exception is thrown. 
+            If this value is 0, no maximum value is checked.
+            </param>
+            <returns>Returns the unsigned number read at the current location.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetSignedDecimal(Tethys.Text.ParseOptions,System.Int32)">
+            <summary>
+            Reads an signed decimal number at the parsing location, converts 
+            it into its binary representation and returns this value. If the 
+            SkipSpace flag is set, leading or trailing space characters are
+            skipped.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetSignedDecimal are:<br/>
+            <list type="bullet">
+            <item>
+            <description>
+            SkipSpace = Accepts whitespace before and after the parsing location.
+            </description>
+            </item>
+            </list>
+            </param>
+            <param name="maxValue">
+            Contains the maximum value which is permitted. If the read value is 
+            larger than this value, the OverflowException exception is thrown. 
+            If this value is 0, no maximum value is checked.
+            </param>
+            <returns>Returns the signed number read at the current location.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetDouble(Tethys.Text.ParseOptions)">
+            <summary>
+            Reads a signed floating point value at the parsing location, converts 
+            it into its binary representation and returns this value. If the 
+            SkipSpace flag is set, leading or trailing space characters are 
+            skipped. The number may be started with a '+' or a '-' character. 
+            Spaces between the leading sign and the first digit are also skipped 
+            if the SkipSpace option is set.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetDouble are:<br/>
+            <list type="bullet">
+            <item>
+            <description>
+            SkipSpace = Accepts whitespace before and after the parsing location.
+            </description>
+            </item>
+            <item>
+            <description>
+            Comma = Besides '.' also ',' is allowed as decimal separator.
+            </description>
+            </item>
+            </list>
+            </param>
+            <returns>Returns the number read at the current location.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetQuotedString(Tethys.Text.ParseOptions)">
+            <summary>
+            Parses a string at the current parsing location and stores it into the
+            specified CTgString parameter. In dependence of the specified options,
+            the string may be quoted or unquoted. In the first case, it is 
+            encapsulated with "...". Spaces before the first between <c>successing</c>
+            and after the final double quote are ignored if the SkipSpace flag
+            is specified. Unquoted strings are terminated by a space or tabulate 
+            character or the end of the parsing string or any other separator
+            character defined by SetWhitespaceList().<br/>
+            Leading spaces before an unquoted string are not permitted. Subsequent
+            quoted strings are concatenated by removing the quotation characters
+            and optionally the space characters between the strings.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetSignedDecimal are:<br/>
+            <list type="bullet">
+            <item>
+            <description>
+            SkipSpace = Accepts whitespace before and after the parsing location.
+            </description>
+            </item>
+            <item>
+            <description>
+            Quoted = specifies that the string must be specified in quotes. If
+            this flag is not specified, the string may be specified optionally
+            without quotes, but it is limited by the first subsequent space or 
+            tabulator character.
+            </description>
+            </item>
+            </list>
+            </param>
+            <returns>The string read a the current parsing location.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetNextToken(Tethys.Text.ParseOptions)">
+            <summary>
+            Returns the next token, i.e. next next continuous string of characters 
+            starting at the current parsing location, that does not contain
+            any whitespace characters.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetNextToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace = accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The token is returned.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetNextToken">
+            <summary>
+            Returns the next token, i.e. next next continuous string of characters 
+            starting at the current parsing location, that does not contain
+            any whitespace characters.
+            </summary>
+            <returns>The token is returned.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SkipNextToken(Tethys.Text.ParseOptions)">
+            <summary>
+            Skips the next token, i.e. next next continuous string of characters 
+            starting at the current parsing location, that does not contain
+            any whitespace characters.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for SkipNextToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace = accepts whitespace before and after the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SkipNextToken">
+            <summary>
+            Skips the next token, i.e. next next continuous string of characters 
+            starting at the current parsing location, that does not contain
+            any whitespace characters.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetNextLine(Tethys.Text.ParseOptions)">
+            <summary>
+            Returns the next line of text starting with the current position
+            and ending with CR/LF or LF/CR.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetNextToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>SkipSpace = accepts whitespace before the parsing
+            location.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The next line of text</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.GetNextLine">
+            <summary>
+            Returns the next line of text starting with the current position
+            and ending with CR/LF or LF/CR.
+            </summary>
+            <returns>The next line of text.</returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.SkipSpace">
+            <summary>
+            Skips the space area at the current location.
+            </summary>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsSpace(System.Char)">
+            <summary>
+            Checks if a true space area follows. This area is not consumed.
+            </summary>
+            <param name="ch">Character to check.</param>
+            <returns>
+            Returns TRUE if a valid space area follows and FALSE if not.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.IsSpace">
+            <summary>
+            Checks if a true space area follows at the current parsing location.
+            This area is not consumed.
+            </summary>
+            <returns>
+            Returns TRUE if a valid space area follows and FALSE if not.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Tethys.Text.TextParse.DetermineLastTokenEnd(Tethys.Text.ParseOptions)">
+            <summary>
+            Determines the end position of the last token and saves it
+            to the tokenEnd.
+            </summary>
+            <param name="parseflags">
+            Parsing flags. Valid flags for GetLastToken are:<br/>
+            <list type="bullet">
+            <item>
+            <description>ToSpace = limit end of the token to the next space area.</description>
+            </item>
+            <item>
+            <description>ToLocation = limit end of the token to the current location.
+            If both options are set, the first end location is used.</description>
+            </item>
+            <item>
+            <description>ToEnd = activates the determining of the token-end which must 
+            be set when no other flags are set.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="P:Tethys.Text.TextParse.Text">
+            <summary>
+            Gets the text to be parsed.
+            </summary>
+        </member>
+        <member name="P:Tethys.Text.TextParse.TextAtLocation">
+            <summary>
+            Gets the text at the current parsing location.
+            </summary>
+        </member>
+        <member name="P:Tethys.Text.TextParse.Location">
+            <summary>
+            Gets the current parsing location.
+            </summary>
+        </member>
+        <member name="P:Tethys.Text.TextParse.WhiteSpaceList">
+            <summary>
+            Gets or sets the whitespace character list.
+            </summary>
+        </member>
+        <member name="T:Tethys.TethysException">
+            <summary>
+            TgException is the base exception class for all Tethys exception.
+            </summary>
+        </member>
+        <member name="M:Tethys.TethysException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.TethysException"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.TethysException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.TethysException"/> class.
+            </summary>
+            <param name="message">exception message</param>
+        </member>
+        <member name="M:Tethys.TethysException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.TethysException"/> class.
+            </summary>
+            <param name="message">exception message</param>
+            <param name="ex">inner exception</param>
+        </member>
+    </members>
+</doc>

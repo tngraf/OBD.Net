@@ -1,0 +1,1210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tethys.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Tethys.Logging.AbstractLogger">
+            <summary>
+            An abstract logger to simply the creation of loggers.
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="T:Tethys.Logging.ILog">
+            <summary>
+            Interface for logger.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Trace(System.Object)">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Trace(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.TraceFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.TraceFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.TraceFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.TraceFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Debug(System.Object)">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.DebugFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.DebugFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Info(System.Object)">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.InfoFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.InfoFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Warn(System.Object)">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.WarnFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.WarnFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Error(System.Object)">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.ErrorFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.ErrorFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Fatal(System.Object)">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.FatalFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.ILog.FatalFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.FormatOutput(System.Text.StringBuilder,Tethys.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Appends the formatted message to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="stringBuilder">the <see cref="T:System.Text.StringBuilder"/>
+            that receives the formatted message.</param>
+            <param name="level">The level.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.WriteInternal(Tethys.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Do the actual logging by constructing the log message using a <see cref="T:System.Text.StringBuilder"/> then
+            sending the output to this final target implemented in derived classes.
+            </summary>
+            <param name="level">The <see cref="T:Tethys.Logging.LogLevel"/> of the message.</param>
+            <param name="message">The log message.</param>
+            <param name="exception">An optional <see cref="T:System.Exception"/> associated with the message.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Trace(System.Object)">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Trace(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.TraceFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.TraceFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.TraceFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.TraceFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Debug(System.Object)">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.DebugFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.DebugFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Info(System.Object)">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.InfoFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.InfoFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Warn(System.Object)">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.WarnFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.WarnFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Error(System.Object)">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.ErrorFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.ErrorFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Fatal(System.Object)">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.FatalFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.AbstractLogger.FatalFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Tethys.Logging.ILogEvent">
+            <summary>
+            Interface for logging events for log viewer.
+            This is an abstract interface for as well log4net as
+            NLog logging events.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.ILogEvent.Level">
+            <summary>
+            Gets the log level.
+            </summary>
+            <value>The level.</value>
+        </member>
+        <member name="P:Tethys.Logging.ILogEvent.Timestamp">
+            <summary>
+            Gets the log event time stamp.
+            </summary>
+            <value>The time stamp.</value>
+        </member>
+        <member name="P:Tethys.Logging.ILogEvent.Message">
+            <summary>
+            Gets the log message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:Tethys.Logging.ILoggerFactoryAdapter">
+            <summary>
+            LoggerFactoryAdapter interface is used by the <see cref="T:Tethys.Logging.LogManager"/>
+            to get the correct logger.
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="M:Tethys.Logging.ILoggerFactoryAdapter.GetLogger(System.Type)">
+            <summary>
+            Get a ILog instance by type.
+            </summary>
+            <param name="type">The type to use for the logger</param>
+            <returns>A logger.</returns>
+        </member>
+        <member name="M:Tethys.Logging.ILoggerFactoryAdapter.GetLogger(System.String)">
+            <summary>
+            Get a ILog instance by name.
+            </summary>
+            <param name="name">The name of the logger</param>
+            <returns>A logger.</returns>
+        </member>
+        <member name="T:Tethys.Logging.ILogView">
+            <summary>
+            This is the interface for all log viewer components.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.ILogView.AddLogEvent(Tethys.Logging.ILogEvent)">
+            <summary>
+            Adds a log event.
+            </summary>
+            <param name="logEvent">The log event.</param>
+        </member>
+        <member name="T:Tethys.Logging.LogEvent">
+            <summary>
+            This is a generic log event. 
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.LogEvent.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.LogEvent"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.LogEvent.#ctor(Tethys.Logging.LogLevel,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.LogEvent"/> class.
+            </summary>
+            <param name="level">The level.</param>
+            <param name="timestamp">The time stamp.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="P:Tethys.Logging.LogEvent.Level">
+            <summary>
+            Gets the log level.
+            </summary>
+            <value>The level.</value>
+        </member>
+        <member name="P:Tethys.Logging.LogEvent.Timestamp">
+            <summary>
+            Gets the log event time stamp.
+            </summary>
+            <value>The time stamp.</value>
+        </member>
+        <member name="P:Tethys.Logging.LogEvent.Message">
+            <summary>
+            Gets the log message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:Tethys.Logging.LogLevel">
+            <summary>
+            Logging levels (of log4net and NLog).
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.None">
+            <summary>
+            No log level (=> ignore).
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.Trace">
+            <summary>
+            A trace logging level.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.Debug">
+            <summary>
+            A debug logging level.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.Info">
+            <summary>
+            A info logging level.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.Warn">
+            <summary>
+            A warn logging level.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.Error">
+            <summary>
+            An error logging level.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogLevel.Fatal">
+            <summary>
+            A fatal logging level.
+            </summary>
+        </member>
+        <member name="T:Tethys.Logging.LogManager">
+            <summary>
+            Use the LogManager's <see cref="M:Tethys.Logging.LogManager.GetLogger(System.String)"/> or <see cref="M:Tethys.Logging.LogManager.GetLogger(System.Type)"/> 
+            methods to obtain <see cref="T:Tethys.Logging.ILog"/> instances for logging.
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="F:Tethys.Logging.LogManager.adapter">
+            <summary>
+            Logger factor to provide concrete loggers.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.LogManager.GetLogger(System.Type)">
+            <summary>
+            Gets the logger by calling <see cref="M:Tethys.Logging.ILoggerFactoryAdapter.GetLogger(System.Type)"/>
+            on the currently configured <see cref="P:Tethys.Logging.LogManager.Adapter"/> using the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>the logger instance obtained from the current <see cref="P:Tethys.Logging.LogManager.Adapter"/></returns>
+        </member>
+        <member name="M:Tethys.Logging.LogManager.GetLogger(System.String)">
+            <summary>
+            Gets the logger by calling <see cref="M:Tethys.Logging.ILoggerFactoryAdapter.GetLogger(System.String)"/>
+            on the currently configured <see cref="P:Tethys.Logging.LogManager.Adapter"/> using the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>the logger instance obtained from the current <see cref="P:Tethys.Logging.LogManager.Adapter"/></returns>
+        </member>
+        <member name="P:Tethys.Logging.LogManager.Adapter">
+            <summary>
+            Gets or sets the adapter.
+            </summary>
+            <value>The adapter.</value>
+        </member>
+        <member name="T:Tethys.Logging.LogViewFactoryAdapter">
+            <summary>
+            Factory adapter to get a logger that forwards the log output to
+            an <see cref="T:Tethys.Logging.ILogView"/> object.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogViewFactoryAdapter._view">
+            <summary>
+            Target log viewer.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogViewFactoryAdapter._addCrLf">
+            <summary>
+            Flag 'add CR/LF at the end of each text line'.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.LogViewFactoryAdapter.#ctor(Tethys.Logging.ILogView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.LogViewFactoryAdapter"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:Tethys.Logging.LogViewFactoryAdapter.#ctor(Tethys.Logging.ILogView,System.Boolean)">
+            <summary>
+            Initializes a new instance of the 
+            <see cref="T:Tethys.Logging.LogViewFactoryAdapter"/> class.
+            </summary>
+            <param name="view">View where to add the adapter.</param>
+            <param name="addCrLf">Add CR/LF at the end of each text line or not.
+            </param>
+        </member>
+        <member name="M:Tethys.Logging.LogViewFactoryAdapter.GetLogger(System.Type)">
+            <summary>
+            Gets the logger.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A logger.</returns>
+        </member>
+        <member name="M:Tethys.Logging.LogViewFactoryAdapter.GetLogger(System.String)">
+            <summary>
+            Gets the logger.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>A logger.</returns>
+        </member>
+        <member name="T:Tethys.Logging.LogViewLogger">
+            <summary>
+            A logger that forwards the log output to an <see cref="T:Tethys.Logging.ILogView"/> object.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogViewLogger._view">
+            <summary>
+            Target log viewer.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.LogViewLogger._addCrLf">
+            <summary>
+            Flag 'add CR/LF at the end of each text line'.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.LogViewLogger.#ctor(Tethys.Logging.ILogView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.LogViewLogger"/> class.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:Tethys.Logging.LogViewLogger.#ctor(Tethys.Logging.ILogView,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.LogViewLogger"/> class.
+            </summary>
+            <param name="view">The view.</param>
+            <param name="addLineEnd">Add CR/LF at the end of each text line or not.
+            </param>
+        </member>
+        <member name="M:Tethys.Logging.LogViewLogger.WriteInternal(Tethys.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Actually sends the message to the underlying log system.
+            </summary>
+            <param name="level">the level of this log event.</param>
+            <param name="message">the message to log</param>
+            <param name="exception">the exception to log (may be null)</param>
+        </member>
+        <member name="T:Tethys.Logging.NamespaceDoc">
+            <summary>
+            Tethys.Logging is a portable logging library for .NET Framework 4.5, 
+            Silverlight 4 and higher, Windows Phone 7 and higher and
+            .NET for Windows Store apps.
+            </summary>
+        </member>
+        <member name="T:Tethys.Logging.NoOpLogger">
+            <summary>
+            A simple logger that writes all output to 
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Trace(System.Object)">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Trace(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.TraceFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.TraceFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.TraceFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.TraceFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Trace' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Debug(System.Object)">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.DebugFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.DebugFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Debug' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Info(System.Object)">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.InfoFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.InfoFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Info' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Warn(System.Object)">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.WarnFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.WarnFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Warn' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Error(System.Object)">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.ErrorFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.ErrorFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Error' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Fatal(System.Object)">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="message">The object to log.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.FatalFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLogger.FatalFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with 'Fatal' level.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Tethys.Logging.NoOpLoggerFactoryAdapter">
+            <summary>
+            Factory adapter to get a Debug logger.
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="F:Tethys.Logging.NoOpLoggerFactoryAdapter.DefaultLogger">
+            <summary>
+            The one and only logger that logs nothing...
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLoggerFactoryAdapter.GetLogger(System.Type)">
+            <summary>
+            Get a ILog instance by type.
+            </summary>
+            <param name="type">The type to use for the logger</param>
+            <returns>
+            A logger.
+            </returns>
+        </member>
+        <member name="M:Tethys.Logging.NoOpLoggerFactoryAdapter.GetLogger(System.String)">
+            <summary>
+            Get a ILog instance by name.
+            </summary>
+            <param name="name">The name of the logger</param>
+            <returns>
+            A logger.
+            </returns>
+        </member>
+        <member name="T:Tethys.Logging.Simple.DebugLogger">
+            <summary>
+            A simple logger that writes all output to Debug.WriteLine.
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="M:Tethys.Logging.Simple.DebugLogger.WriteInternal(Tethys.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Do the actual logging by constructing the log message using a <see cref="T:System.Text.StringBuilder"/> then
+            sending the output to <c>Console.Out"</c>.
+            </summary>
+            <param name="level">The <see cref="T:Tethys.Logging.LogLevel"/> of the message.</param>
+            <param name="message">The log message.</param>
+            <param name="exception">An optional <see cref="T:System.Exception"/> associated with the message.</param>
+        </member>
+        <member name="T:Tethys.Logging.Simple.DebugLoggerFactoryAdapter">
+            <summary>
+            Factory adapter to get a Debug logger.
+            </summary>
+            <remarks>
+            This class is based on ideas coming from 
+            <a href="http://netcommon.sourceforge.net">Common.Logging</a>.
+            </remarks>
+        </member>
+        <member name="F:Tethys.Logging.Simple.DebugLoggerFactoryAdapter.DefaultLogger">
+            <summary>
+            The one and only debug logger.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Simple.DebugLoggerFactoryAdapter.GetLogger(System.Type)">
+            <summary>
+            Get a ILog instance by type.
+            </summary>
+            <param name="type">The type to use for the logger</param>
+            <returns>
+            A logger.
+            </returns>
+        </member>
+        <member name="M:Tethys.Logging.Simple.DebugLoggerFactoryAdapter.GetLogger(System.String)">
+            <summary>
+            Get a ILog instance by name.
+            </summary>
+            <param name="name">The name of the logger</param>
+            <returns>
+            A logger.
+            </returns>
+        </member>
+        <member name="T:Tethys.Logging.Simple.NamespaceDoc">
+            <summary>
+            Tethys.Logging.Simple implement s a avery simple logger that forwards
+            all log output to debug trace.
+            </summary>
+        </member>
+    </members>
+</doc>

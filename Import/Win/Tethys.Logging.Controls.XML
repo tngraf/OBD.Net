@@ -1,0 +1,606 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tethys.Logging.Controls</name>
+    </assembly>
+    <members>
+        <member name="T:Tethys.Logging.Controls.DebugLogForm">
+            <summary>
+            DebugLogForm implements a form that contains a RtfLogView to display
+            log4net logging events. This form can be easily added to an application
+            to show logging only if it is explicitly needed.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.DebugLogForm.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.Controls.DebugLogForm"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.DebugLogForm.DebugLogFormFormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            This function is called when the user has clicked on the
+            close window control box. We do not want the window to be
+            closed - we only want it to be hidden. So we disallow closing
+            the window and hide it by ourselves. The parent of the debug
+            trace window is informed by the Hiding event.
+            </summary>
+            <param name="sender">The debug trace form itself.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.FormClosingEventArgs"/> instance
+            containing the event data.</param>
+        </member>
+        <member name="F:Tethys.Logging.Controls.DebugLogForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.DebugLogForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.DebugLogForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="E:Tethys.Logging.Controls.DebugLogForm.HidingEvent">
+            <summary>
+            Hiding event.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.DebugLogForm.RtfLogView">
+            <summary>
+            Gets the underlying RtfLogView control
+            </summary>
+        </member>
+        <member name="T:Tethys.Logging.Controls.NamespaceDoc">
+            <summary>
+            Tethys.Logging.Controls are WinForms based controls to display
+            log output.
+            </summary>
+        </member>
+        <member name="T:Tethys.Logging.Controls.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Tethys.Logging.Controls.RtfLogView">
+            <summary>
+            User control to display logging information.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.RtfLogView.ToolbarHeight">
+            <summary>
+            Height of the toolbar.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.RtfLogView.MaxLogLengthChunk">
+            <summary>
+            Maximum length of a chunk.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.RtfLogView._defaultTextColor">
+            <summary>
+            Default color for text output.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.RtfLogView._addAtTail">
+            <summary>
+            Defines whether new event are added at the tail or
+            at the head of the list.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.RtfLogView._toolbarVisible">
+            <summary>
+            Flag 'toolbar and caption visible'.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.Controls.RtfLogView"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.BtnClearClick(System.Object,System.EventArgs)">
+            <summary>
+            Clears the event log view.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.BtnCopyClick(System.Object,System.EventArgs)">
+            <summary>
+            Copies the contents of the event log to the clipboard.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.BtnSaveClick(System.Object,System.EventArgs)">
+            <summary>
+            Saves the contents of the event log to a text file.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.RtfLogViewOnLayout(System.Object,System.Windows.Forms.LayoutEventArgs)">
+            <summary>
+            Handles the Layout event of the RtfLogView control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.LayoutEventArgs"/> instance containing 
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.InitControl">
+            <summary>
+            Initializes this control.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.CheckListHeight">
+            <summary>
+            Adapts the list height to current property settings.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.CopyToClipboard">
+            <summary>
+            Copies the contents of the event log to the clipboard.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.SaveToTextFile">
+            <summary>
+            Saves the contents of the event log to a text file.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.WriteTextFile(System.String)">
+            <summary>
+            Write the log window contents to a plain text file.
+            </summary>
+            <param name="fileName">Name of the file to write to.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.WriteRichTextFile(System.String)">
+            <summary>
+            Write the log window contents to a RTF file.
+            </summary>
+            <param name="fileName">Name of the file to write to.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.CheckForMaxSize">
+            <summary>
+            Checks for the maximum text display size.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.AppendTextInternal(System.String,System.Drawing.Color)">
+            <summary>
+            Appends text to the current text of status view.
+            </summary>
+            <param name="text">text to add</param>
+            <param name="color">color of the text</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.AddLogEvent(Tethys.Logging.ILogEvent)">
+            <summary>
+            Adds a log event.
+            </summary>
+            <param name="logEvent">The log event.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.Clear">
+            <summary>
+            Clears the status view.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.AppendText(System.String,System.Drawing.Color)">
+            <summary>
+            Appends text to the current text of status view.
+            </summary>
+            <param name="text">text to add</param>
+            <param name="color">color of the text</param>
+        </member>
+        <member name="F:Tethys.Logging.Controls.RtfLogView.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.RtfLogView.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.TextColor">
+            <summary>
+            Gets or sets the text color to be used for default text output.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.ShowToolButtons">
+            <summary>
+            Gets or sets a value indicating whether to enable the tool buttons.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.Text">
+            <summary>
+            Gets the current text in the status view.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.RtfControl">
+            <summary>
+            Gets the underlying RichTextBox control.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.AddAtTail">
+            <summary>
+            Gets or sets a value indicating whether new event are added at the tail or
+            at the head of the list.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.LabelText">
+            <summary>
+            Gets or sets the label on the upper left corner of the control.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.MaxLogLength">
+            <summary>
+            Gets or sets the max length of log text displayed.<br/>
+            A value of -1 means no length check.
+            </summary>
+            <value>The length of the max log.</value>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.ShowDebugCheckBox">
+            <summary>
+            Gets or sets a value indicating whether to enable the 'show debug' checkbox.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.RtfLogView.ShowDebugEvents">
+            <summary>
+            Gets or sets a value indicating whether to Enable the debug log display.
+            </summary>
+        </member>
+        <member name="T:Tethys.Logging.Controls.RtfLogView.AppendTextDelegate">
+            <summary>
+            Delegate to be used in case of callbacks coming from
+            other threads
+            </summary>
+            <param name="text">The text.</param>
+            <param name="color">The color.</param>
+        </member>
+        <member name="T:Tethys.Logging.Controls.TableLogView">
+            <summary>
+            TableLogView implements a list view to show log4net
+            logging events in a table.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.ColWidthIcon">
+            <summary>
+            Default width of the icon column.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.ColWidthDate">
+            <summary>
+            Default width of the date column.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.ColWidthTime">
+            <summary>
+            Default width of the time column.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.ColWidthType">
+            <summary>
+            Default width of the type column.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.ToolbarHeight">
+            <summary>
+            Default height of the tool bar.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.AutoScaleBaseHeight">
+            <summary>
+            Vertical base height on 100% scaled display.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._addAtTail">
+            <summary>
+            Defines whether new event are added at the tail or
+            at the head of the list.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._colDate">
+            <summary>
+            Date column header.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._colTime">
+            <summary>
+            Time column header.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._colType">
+            <summary>
+            Type column header.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._colIcon">
+            <summary>
+            Icon column header.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._colMessage">
+            <summary>
+            Message column header.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._hasColDate">
+            <summary>
+            Flag 'we have a date column'.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._hasColTime">
+            <summary>
+            Flag 'we have a time column'.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._hasColType">
+            <summary>
+            Flag 'we have a type column'.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._showCategoryButtons">
+            <summary>
+            Flag 'show category button.'.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._showToolButtons">
+            <summary>
+            Flag 'we have a date column'.
+            </summary>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView._culture">
+            <summary>
+            Culture to use.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tethys.Logging.Controls.TableLogView"/> class.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.BtnClearClick(System.Object,System.EventArgs)">
+            <summary>
+            Clears the event log view.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance
+            containing the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.BtnCopyClick(System.Object,System.EventArgs)">
+            <summary>
+            Copies the contents of the event log to the clipboard.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.BtnSaveClick(System.Object,System.EventArgs)">
+            <summary>
+            Saves the contents of the event log to a text file.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.BtnExportExcelClick(System.Object,System.EventArgs)">
+            <summary>
+            Saves the contents of the event log to a csv file.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.TableLogViewOnLayout(System.Object,System.Windows.Forms.LayoutEventArgs)">
+            <summary>
+            Handles the Layout event of the TableLogView control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.LayoutEventArgs"/> instance containing 
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.InitControl">
+            <summary>
+            Initializes this control.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.LogEventListToText(System.Char)">
+            <summary>
+            Transforms the event log to a text file.
+            </summary>
+            <param name="separator">The separator.</param>
+            <returns>
+            A log string.
+            </returns>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.CheckListHeight">
+            <summary>
+            Adapts the list height to current property settings.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.CheckTableWidth">
+            <summary>
+            Adapts the size of the message column when the list size
+            has changed.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.ListViewResize(System.Object,System.EventArgs)">
+            <summary>
+            Adapts the size of the message column when the list size
+            has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing
+            the event data.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.GetImageIndex(Tethys.Logging.LogLevel)">
+            <summary>
+            Returns the index in the image list of the image for
+            this log event level.
+            </summary>
+            <param name="eventLevel">log event level</param>
+            <returns>index of the image for this level</returns>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.CheckMaxLength">
+            <summary>
+            Checks for the maximum length.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.AddLogEvent(Tethys.Logging.ILogEvent)">
+            <summary>
+            Adds a log event.
+            </summary>
+            <param name="logEvent">The log event.</param>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.ClearList">
+            <summary>
+            Clears the event log view.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.CopyToClipboard">
+            <summary>
+            Copies the contents of the event log to the clipboard.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.SaveToTextFile">
+            <summary>
+            Saves the contents of the event log to a text file.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.SaveToCsvFile">
+            <summary>
+            Saves the contents of the event log to a CSV file.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.AppendLogEvent(Tethys.Logging.ILogEvent)">
+            <summary>
+            Appends the specified event to the log view.
+            </summary>
+            <param name="logEvent">The log event.</param>
+        </member>
+        <member name="F:Tethys.Logging.Controls.TableLogView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Tethys.Logging.Controls.TableLogView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.Culture">
+            <summary>
+            Gets or sets the _culture for this control.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ColumnCategory">
+            <summary>
+            Gets or sets a value indicating whether to enable the Category column.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ColumnDate">
+            <summary>
+            Gets or sets a value indicating whether to enable the date column.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ColumnTime">
+            <summary>
+            Gets or sets a value indicating whether to enable the time column.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ShowCategoryButtons">
+            <summary>
+            Gets or sets a value indicating whether to enable the Category buttons.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ShowToolButtons">
+            <summary>
+            Gets or sets a value indicating whether to enable the tool buttons.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.DateColumnHeader">
+            <summary>
+            Gets or sets the date column header text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.TimeColumnHeader">
+            <summary>
+            Gets or sets the time column header text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.CategoryColumnHeader">
+            <summary>
+            Gets or sets the category column header text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.MessageColumnHeader">
+            <summary>
+            Gets or sets the message column header text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ShowDebugButtonText">
+            <summary>
+            Gets or sets the 'show debug events' button text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ShowErrorButtonText">
+            <summary>
+            Gets or sets the 'show error events' button text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ShowInfoButtonText">
+            <summary>
+            Gets or sets the 'show info events' button text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.ShowWarningButtonText">
+            <summary>
+            Gets or sets the 'show debug events' button text.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.AddAtTail">
+            <summary>
+            Gets or sets a value indicating whether new events are added at the tail or
+            at the head of the list.
+            </summary>
+        </member>
+        <member name="P:Tethys.Logging.Controls.TableLogView.MaxLogEntries">
+            <summary>
+            Gets or sets the max length of log text displayed.<br/>
+            A value of -1 means no length check.
+            </summary>
+            <value>The length of the max log.</value>
+        </member>
+        <member name="T:Tethys.Logging.Controls.TableLogView.AppendLogEventDelegate">
+            <summary>
+            Delegate to be used in case of callbacks coming from
+            other threads.
+            </summary>
+            <param name="logevent">Log event.</param>
+        </member>
+    </members>
+</doc>

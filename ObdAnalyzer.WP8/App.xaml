@@ -1,0 +1,22 @@
+﻿<Application
+    x:Class="Tethys.OBD.ObdAnalyzer.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:Views="clr-namespace:Tethys.OBD.ObdAnalyzer.Views">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <Views:LocalizedStrings x:Key="LocalizedStrings"/>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService
+            Launching="ApplicationLaunching" 
+            Closing="ApplicationClosing"
+            Activated="ApplicationActivated" 
+            Deactivated="ApplicationDeactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>
