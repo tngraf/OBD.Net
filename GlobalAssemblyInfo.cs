@@ -1,9 +1,15 @@
 ﻿#region Header
 // --------------------------------------------------------------------------
-// OBD Tools
+// Tethys.Silverlight
 // ==========================================================================
+//
+// This library contains common code for WPF, Silverlight, Windows Phone and
+// Windows 8 projects.
+//
+// ===========================================================================
+//
 // <copyright file="GlobalAssemblyInfo.cs" company="Tethys">
-// Copyright  2014 by Thomas Graf
+// Copyright  2010-2015 by Thomas Graf
 //            All rights reserved.
 //            Licensed under the Apache License, Version 2.0.
 //            Unless required by applicable law or agreed to in writing, 
@@ -21,10 +27,10 @@ using System.Reflection;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyCompany("Tethys")]
-[assembly: AssemblyCopyright("Copyright ©  2014 T. Graf")]
+[assembly: AssemblyCopyright("Copyright ©  2010-2015 T. Graf")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Version information
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
