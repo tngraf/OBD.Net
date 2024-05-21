@@ -184,3 +184,7 @@ FakesAssemblies/
 
 # Windows Image thumbnail database
 Thumbs.db
+
+# project speficif
+_internal_/
+
